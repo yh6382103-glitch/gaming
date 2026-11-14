@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Admin | Ultimate Gaming Championship 2026</title>
+<link rel="stylesheet" href="style.css">
+<style>
+ .wrap{max-width:1100px;margin:0 auto;padding:32px clamp(16px,4vw,32px)}
+ .panel{background:linear-gradient(160deg,var(--forest),var(--charcoal));border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:22px}
+ .panel h2{font-size:24px;margin-bottom:14px}
+ .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+ label.f{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+ .f input,.f select{width:100%;margin-top:4px;background:var(--charcoal);border:1px solid rgba(255,255,255,.14);border-radius:8px;color:var(--white);padding:12px;font-size:16px}
+ .f input:focus{outline:0;border-color:var(--crimson-hi)}
+ .b{background:var(--crimson);color:#fff;border:0;border-radius:8px;padding:12px 20px;font-weight:800;cursor:pointer;font-size:14px;letter-spacing:.06em}
+ .b:hover{background:var(--crimson-hi)}.b.ghost{background:transparent;border:1px solid var(--line)}
+ .b.sm{padding:7px 12px;font-size:12px}
+ .msg{padding:10px 14px;border-radius:8px;margin:12px 0;font-weight:600;white-space:pre-line}
+ .msg.ok{background:rgba(13,25,22,.9);border:1px solid #2c5a4c;color:#bfe8d8}
+ .msg.err{background:rgba(159,25,26,.2);border:1px solid var(--crimson);color:#ffd7d7}
+ .scroll{overflow-x:auto}
+ .lb td .b{margin-right:6px}
+ .stat{font-family:Impact,sans-serif;font-size:42px;color:var(--crimson-hi)}
+ .top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+ .hide{display:none}
+ .login{max-width:420px;margin:12vh auto}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a class="brand" href="index.html"><span>Ultimate<b>Gaming Championship</b></span></a><a class="b ghost" href="index.html">← Back to site</a></div>
+
+  <div id="loginView" class="panel login hide">
+    <h2>Admin Login</h2>
+    <form id="loginForm">
+      <label class="f">Email<input type="email" id="email" required autocomplete="username"></label><br>
+      <label class="f">Password<input type="password" id="password" required autocomplete="current-password"></label>
+      <div id="loginMsg"></div>
+      <button class="b" type="submit" style="width:100%;margin-top:8px">LOGIN</button>
+    </form>
+  </div>
+
+  <div id="dash" class="hide">
+    <div class="top" style="margin:18px 0"><h1 style="font-size:34px">Admin <span style="color:var(--crimson-hi)">Dashboard</span></h1><button class="b ghost" id="logout">Log out</button></div>
+
+    <div class="panel"><div class="stat" id="total">–</div><div style="color:var(--muted)">Registered players</div></div>
+
+    <div class="panel">
+      <h2 id="formTitle">Add Player</h2>
+      <form id="pform">
+        <div class="row">
+          <label class="f">Player ID<input id="f_id" required maxlength="32" pattern="[A-Za-z0-9_\-]+"></label>
+          <label class="f">Name<input id="f_name" required></label>
+          <label class="f">Age<input id="f_age" type="number" min="5" max="100" required></label>
+          <label class="f">Club ID<input id="f_club" required></label>
+          <label class="f">Phone Number<input id="f_phone" required inputmode="tel"></label>
+        </div>
+        <div style="margin-top:14px"><button class="b" type="submit" id="saveBtn">ADD PLAYER</button> <button class="b ghost hide" type="button" id="cancelEdit">Cancel edit</button></div>
+      </form>
+      <div id="formMsg"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Import from Excel / CSV</h2>
+      <p class="lead" style="margin-bottom:12px">Columns (header row required): <b>player_id, name, age, club_id, phone</b>. Duplicate or invalid rows are rejected and listed; valid rows are imported.</p>
+      <input type="file" id="file" accept=".csv,.xlsx,.xls">
+      <div id="importMsg"></div>
+    </div>
+
+    <div class="panel">
+      <div class="top"><h2 style="margin:0">All Players</h2>
+        <label class="f" style="min-width:220px">Search by Player ID<input id="q" placeholder="e.g. 23"></label></div>
+      <div class="scroll"><table class="lb" style="margin-top:14px"><thead><tr><th>Player ID</th><th>Name</th><th>Age</th><th>Club ID</th><th>Phone</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+    </div>
+
+    <div class="panel">
+      <h2>Leaderboard</h2>
+      <form id="lform" class="row">
+        <label class="f">Name<input id="l_name" required></label>
+        <label class="f">Game<select id="l_game"><option>PUBG</option><option>PES 2026</option></select></label>
+        <label class="f">Points<input id="l_pts" type="number" required></label>
+        <div style="align-self:end"><button class="b" type="submit">ADD ENTRY</button></div>
+      </form>
+      <div class="scroll"><table class="lb" style="margin-top:14px"><thead><tr><th>Name</th><th>Game</th><th>Points</th><th></th></tr></thead><tbody id="lrows"></tbody></table></div>
+    </div>
+  </div>
+
+  <div id="setup" class="panel hide"><h2>Database not connected</h2><p>Fill in <code>config.js</code> with your Supabase URL and anon key (see README.md), then reload.</p></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

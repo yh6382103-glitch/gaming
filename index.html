@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ultimate Gaming Championship 2026 | PUBG × PES 2026</title>
+<meta name="description" content="Ultimate Gaming Championship 2026 – PUBG × PES 2026. Play, compete, be the champion. Verify your Player ID.">
+<meta name="theme-color" content="#1A181B">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a class="brand" href="#home" aria-label="Ultimate Gaming Championship">
+    <svg viewBox="0 0 40 40" fill="none" stroke="#c9a45c" stroke-width="2" stroke-linejoin="round"><path d="M10 6h20v9a10 10 0 0 1-20 0z"/><path d="M10 9H4c0 6 3 9 7 9M30 9h6c0 6-3 9-7 9M20 25v7M13 35h14"/></svg>
+    <span>Ultimate<b>Gaming Championship</b></span>
+  </a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span></button>
+  <div class="links" id="links">
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#players">Players</a>
+    <a href="#leaderboard">Leaderboard</a>
+    <a href="#contact">Contact</a>
+    <a href="admin.html" class="btn-admin">Admin Login</a>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <h1 class="hero-sr">Ultimate Gaming Championship 2026 – PUBG × PES 2026</h1>
+  <div class="hero-art" role="img" aria-label="Ultimate Gaming Championship 2026 – PUBG × PES 2026: a PUBG soldier and a footballer in a red Portugal kit either side of the championship trophy"></div>
+  <p class="tagline">Play<i>•</i>Compete<i>•</i>Be the Champion</p>
+
+  <div class="search-wrap">
+    <form class="search" id="searchForm" autocomplete="off">
+      <label>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="pid" type="text" inputmode="text" maxlength="32" placeholder="Enter Your Player ID..." aria-label="Player ID" required>
+      </label>
+      <button type="submit" id="searchBtn">SEARCH PLAYER &nbsp;›</button>
+    </form>
+    <div id="result" aria-live="polite"></div>
+  </div>
+
+  <div class="highlights">
+    <div class="hl"><svg viewBox="0 0 40 40"><rect x="5" y="8" width="30" height="27" rx="3"/><path d="M5 16h30M12 4v7M28 4v7M12 22h4M18 22h4M24 22h4M12 28h4M18 28h4"/></svg><p>Big Tournament 2026</p></div>
+    <div class="hl"><svg viewBox="0 0 40 40"><path d="M10 12h20a8 8 0 0 1 8 9l-1 8a4 4 0 0 1-7 2l-3-4H13l-3 4a4 4 0 0 1-7-2l-1-8a8 8 0 0 1 8-9zM12 17v6M9 20h6M27 18h.01M31 22h.01"/></svg><p>PUBG &amp; PES 2026 Together</p></div>
+    <div class="hl"><svg viewBox="0 0 40 40"><path d="M11 6h18v9a9 9 0 0 1-18 0zM11 9H5c0 6 3 8 6 8M29 9h6c0 6-3 8-6 8M20 24v6M13 34h14"/></svg><p>Win Amazing Rewards</p></div>
+  </div>
+</header>
+
+<section class="page" id="about">
+  <h2>About the <em>Championship</em></h2>
+  <p class="lead">Ultimate Gaming Championship 2026 brings two of the biggest competitive games under one trophy. Register, get your Player ID, and fight for the title.</p>
+  <div class="grid2">
+    <div class="tile"><h3>PUBG</h3><p>Drop in, survive, and outlast the lobby. Squad tactics and clutch plays decide who walks away as champion.</p></div>
+    <div class="tile"><h3>PES 2026</h3><p>Head-to-head football. Skill, patience and a cool head in front of goal take the crown.</p></div>
+    <div class="tile"><h3>Rewards</h3><p>Top players in both games compete for amazing rewards and the Ultimate Gaming Championship trophy.</p></div>
+  </div>
+</section>
+
+<section class="page alt" id="players"><div class="inner">
+  <h2>Player <em>Verification</em></h2>
+  <p class="lead">Every registered player has a unique Player ID. Enter yours in the search bar to check your registration details.</p>
+  <div class="grid2">
+    <div class="tile"><h3>1 · Register</h3><p>Receive your unique Player ID from the organisers.</p></div>
+    <div class="tile"><h3>2 · Verify</h3><p>Search your Player ID to confirm your name, age, Club ID and phone number.</p></div>
+    <div class="tile"><h3>3 · Compete</h3><p>Show up on match day with your verified Player ID.</p></div>
+  </div>
+  <p style="margin-top:22px"><a href="#home" class="contact-box" style="display:inline-flex"><span style="border:1px solid var(--crimson);padding:12px 22px;border-radius:8px;font-weight:700" id="goSearch">Search a Player ID ↑</span></a></p>
+</div></section>
+
+<section class="page" id="leaderboard">
+  <h2><em>Leaderboard</em></h2>
+  <p class="lead">Top scores, updated by the organisers.</p>
+  <table class="lb"><thead><tr><th>#</th><th>Name</th><th>Game</th><th>Points</th></tr></thead><tbody id="lbBody"><tr><td colspan="4" class="empty">Loading…</td></tr></tbody></table>
+</section>
+
+<section class="page alt" id="contact"><div class="inner">
+  <h2>Contact <em>Us</em></h2>
+  <p class="lead">Questions about your registration or Player ID? Reach the organisers.</p>
+  <div class="contact-box">
+    <a href="mailto:CHANGE-ME@example.com">Email the organisers</a>
+  </div>
+</div></section>
+
+<footer>© 2026 Ultimate Gaming Championship · PUBG × PES 2026</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
